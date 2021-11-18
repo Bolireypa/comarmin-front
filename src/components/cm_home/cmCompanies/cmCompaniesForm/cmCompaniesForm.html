@@ -1,0 +1,60 @@
+<div>
+  <v-card>
+    <v-card-title>
+      Agregar empresa
+    </v-card-title>
+    <v-card-text>
+      <form @submit.prevent="submit">
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model="companyData.name"
+              label="Nombre"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="companyData.city"
+              label="Ciudad"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+            v-model="companyData.department"
+            label="Departamento"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+            v-model="companyData.phone"
+            label="Telefono"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+            v-model="companyData.nit"
+            label="NIT"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="green darken-1" dark @click="submit">
+              Guardar
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
+    </v-card-text>
+  </v-card>
+</div>

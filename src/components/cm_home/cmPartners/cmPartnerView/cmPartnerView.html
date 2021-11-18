@@ -1,0 +1,131 @@
+<div>
+  <v-card>
+    <v-row>
+      <v-col>
+          <v-card>
+              <v-card-title ref="cardHtml">
+                Ver información de {{ partner.name }} {{ partner.lastname }}
+              </v-card-title>
+              <v-card-text>
+                <v-row>
+                  <v-col cols="6" class="mx-auto">
+                    <v-card elevation="10" color="white" class="p-4 m-4">
+                        <v-row class="">
+                          <v-col cols="3" class="pb-0 mb-0">
+                            <v-avatar
+                              size="100"
+                              color="blue lighten-4"
+                              class="m-1 mt-8"
+                            >
+                              <span class="white--text text-6xl">JC</span>
+                            </v-avatar>
+                          </v-col>
+                          <v-col cols="9" class="pb-0 mb-0">
+                            <v-list-item class="ml-2">
+                              <v-list-item-content class="">
+                                <v-list-item-subtitle class="text-xs">Apellido(s):</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  {{ partner.lastname }}
+                                </v-list-item-title>
+                              </v-list-item-content>
+                              <v-list-item-content>
+                                <v-list-item-subtitle class="text-xs">Nombre(s):</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  {{ partner.name }}
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                            <!-- <v-list-item class="ml-2">
+                              <v-list-item-content>
+                                <v-list-item-subtitle class="text-xs">Nombre(s):</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  Alexandro Marcus Obrien
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item> -->
+                            <v-list-item class="ml-2">
+                              <v-list-item-content>
+                                <v-list-item-subtitle class="text-xs">Celular:</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  {{ partner.cellphone }}
+                                </v-list-item-title>
+                              </v-list-item-content>
+        
+                              <v-list-item-content>
+                                <v-list-item-subtitle class="text-xs">Cédula de Identidad:</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  {{ partner.ci }}
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item class="ml-2">
+                              <v-list-item-content>
+                                <v-list-item-subtitle class="text-xs">Dirección:</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  {{ partner.address }}
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                            
+                          </v-col>
+                          <v-col cols="12" class="mt-0 pt-0">
+                            <v-list-item class="ml-2">
+                              <v-list-item-content>
+                                <v-list-item-subtitle class="text-xs">Sección:</v-list-item-subtitle>
+                                <v-list-item-title class="text-xs">
+                                  Sección 4
+                                </v-list-item-title>
+                              </v-list-item-content>
+                              <v-list-item-content>
+                                  <v-list-item-subtitle class="text-xs">Tipo de sangre:</v-list-item-subtitle>
+                                  <v-list-item-title class="text-xs">
+                                    ORh+
+                                  </v-list-item-title>
+                                </v-list-item-content>
+                              <v-list-item-content>
+                                  <v-list-item-subtitle class="text-xs">Fecha de aficiliación:</v-list-item-subtitle>
+                                  <v-list-item-title class="text-xs">
+                                    {{ partner.membershipDate }}
+                                  </v-list-item-title>
+                                </v-list-item-content>
+                              
+                            </v-list-item>
+                          </v-col>
+                        </v-row>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" class="px-7">
+        <div class="text-h5">Historial de salidas de mineral</div>
+      </v-col>
+      <v-col cols="12">
+          <v-data-table
+          :headers="headers"
+          :items="outlets"
+          :items-per-page="15"
+        >
+          <!-- <template v-slot:item.options="{ item }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="editItem(item)"
+            >
+              mdi-eye
+            </v-icon> -->
+            <!-- <v-icon
+              small
+              @click="deleteItem(item)"
+            >
+              mdi-delete
+            </v-icon> -->
+          <!-- </template> -->
+        </v-data-table>
+      </v-col>
+    </v-row>
+  </v-card>
+</div>

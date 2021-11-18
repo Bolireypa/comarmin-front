@@ -1,0 +1,159 @@
+<div>
+  <div>
+
+    <!-- <v-card>
+      <v-card-title ref="cardHtml">
+        Socios
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="4" v-for="(s, i) in partners" :key="i">
+            <v-card elevation="10" :id="'card'+i" color="white">
+                <v-row class="">
+                  <v-col cols="3" class="pb-0 mb-0">
+                    <v-avatar
+                      size="100"
+                      color="blue lighten-4"
+                      class="m-1 mt-8"
+                    >
+                      <span class="white--text text-6xl">JC</span>
+                    </v-avatar>
+                  </v-col>
+                  <v-col cols="9" class="pb-0 mb-0">
+                    <v-list-item class="ml-2">
+                      <v-list-item-content class="">
+                        <v-list-item-subtitle class="text-xs">Apellido(s):</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          {{ s.lastname }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                      <v-list-item-content>
+                        <v-list-item-subtitle class="text-xs">Nombre(s):</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          {{ s.name }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item> -->
+                    <!-- <v-list-item class="ml-2">
+                      <v-list-item-content>
+                        <v-list-item-subtitle class="text-xs">Nombre(s):</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          Alexandro Marcus Obrien
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item> -->
+                    <!-- <v-list-item class="ml-2">
+                      <v-list-item-content>
+                        <v-list-item-subtitle class="text-xs">Celular:</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          {{ s.cellphone }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+
+                      <v-list-item-content>
+                        <v-list-item-subtitle class="text-xs">Cédula de Identidad:</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          {{ s.ci }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item class="ml-2">
+                      <v-list-item-content>
+                        <v-list-item-subtitle class="text-xs">Dirección:</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          {{ s.address }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    
+                  </v-col>
+                  <v-col cols="12" class="mt-0 pt-0">
+                    <v-list-item class="ml-2">
+                      <v-list-item-content>
+                        <v-list-item-subtitle class="text-xs">Sección:</v-list-item-subtitle>
+                        <v-list-item-title class="text-xs">
+                          Sección 4
+                        </v-list-item-title>
+                      </v-list-item-content>
+                      <v-list-item-content>
+                          <v-list-item-subtitle class="text-xs">Tipo de sangre:</v-list-item-subtitle>
+                          <v-list-item-title class="text-xs">
+                            ORh+
+                          </v-list-item-title>
+                        </v-list-item-content>
+                      <v-list-item-content>
+                          <v-list-item-subtitle class="text-xs">Fecha de aficiliación:</v-list-item-subtitle>
+                          <v-list-item-title class="text-xs">
+                            {{ s.membershipDate }}
+                          </v-list-item-title>
+                        </v-list-item-content>
+                      
+                    </v-list-item>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <div class="mt-1">
+                <v-btn color="green darken-2" dark @click="cardPDF(i)">
+                  PDF
+                </v-btn> -->
+                <!-- <v-btn>
+                  Editar
+                </v-btn>
+                <v-btn>
+                  Eliminar
+                </v-btn> -->
+              <!-- </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card> -->
+
+      <v-card>
+          <v-card-title>
+            Socios
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Buscar"
+              hide-details
+            ></v-text-field>
+            <v-spacer></v-spacer>
+            <download-excel
+              :data="partners"
+              :fields="json_fields_partners"
+              worksheet="My worksheet"
+              :name="excelReportName"
+            >
+              <v-btn color="cyan darken-3" dark>
+                Generar Excel
+              </v-btn>
+            </download-excel>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-2" dark @click="newItem">Agregar Socio <v-icon>mdi-plus</v-icon></v-btn>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="partners"
+            :items-per-page="5"
+            :search="search"
+          >
+            <template v-slot:item.options="{ item }">
+              <v-icon
+                small
+                class="mr-2"
+                @click="editItem(item)"
+              >
+                mdi-eye
+              </v-icon>
+              <!-- <v-icon
+                small
+                @click="deleteItem(item)"
+              >
+                mdi-delete
+              </v-icon> -->
+            </template>
+          </v-data-table>
+        </v-card>
+  </div>
+</div>

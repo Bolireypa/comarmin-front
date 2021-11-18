@@ -1,0 +1,507 @@
+<div>
+  <v-row>
+    <v-col cols="9">
+      <v-row>
+        <!-- <v-col cols="6"> -->
+          <!-- <v-card class="p-1">
+            <v-card-title>
+              Precios de minerales
+            </v-card-title>
+              <v-simple-table>
+                  <template v-slot:default>
+                    <thead>
+                      <tr>
+                        <th class="text-center">
+                          Mineral
+                        </th>
+                        <th class="text-center">
+                          Bolivianos (Bs.)
+                        </th>
+                        <th class="text-center">
+                          Dolares ($)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Zinc</td>
+                        <td>40</td>
+                        <td>5.75</td>
+                      </tr>
+                      <tr>
+                        <td>Plata</td>
+                        <td>60</td>
+                        <td>6.12</td>
+                      </tr>
+                      <tr>
+                        <td>Estaño</td>
+                        <td>55</td>
+                        <td>7.85</td>
+                      </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
+            </v-card> -->
+          <!-- </v-col> -->
+
+          <v-col cols="6">
+            <v-card
+              elevation="8"
+            >
+              <v-tabs
+                v-model="tab"
+              >
+                <v-tab @click="updateChartData('company')">
+                  Empresas
+                </v-tab>
+                <v-tab @click="updateChartData('partner')">
+                  Socios
+                </v-tab>
+              </v-tabs>
+              <v-tabs-items
+                v-model="tab"
+              >
+                <v-tab-item>
+                  <v-card
+                    class="p-2"
+                  >
+                    <v-card-title class="p-0">
+                      Salidas de mineral por empresa
+                    </v-card-title>
+                    <v-virtual-scroll
+                      :items="companiesList"
+                      height="200"
+                      item-height="64"
+                    >
+                      <template v-slot:default="{ item }">
+                        <v-divider class="mb-2"></v-divider>
+                        <div class="flex">
+                          <div class="flex-1">{{ item.name }}</div>
+                          <div class="flex-none">
+                            <v-chip
+                              small
+                              class="ma-2"
+                              color="green accent-4"
+                              dark
+                            >
+                              {{ item.total }} Salidas
+                            </v-chip>
+                          </div>
+                        </div>
+                        <div class="flex">
+                          <div class="flex-1">
+                            <v-tooltip top>
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-progress-linear
+                                  v-model="item.percentages"
+                                  color="green accent-4"
+                                  v-bind="attrs"
+                                  v-on="on"
+                                ></v-progress-linear>
+                              </template>
+                              <span>{{ item.percentages }}%</span>
+                            </v-tooltip>
+                          </div>
+                        </div>
+                      </template>
+                    </v-virtual-scroll>
+                  </v-card>
+                </v-tab-item>
+                <v-tab-item>
+                  <v-card
+                    class="p-2"
+                  >
+                    <v-card-title class="p-0">
+                      Salidas de mineral por socio
+                    </v-card-title>
+                    <v-virtual-scroll
+                      :items="partnersList"
+                      height="200"
+                      item-height="64"
+                    >
+                      <template v-slot:default="{ item }">
+                        <v-divider class="mb-2"></v-divider>
+                        <div class="flex">
+                          <div class="flex-1">{{ item.name }}</div>
+                          <div class="flex-none">
+                            <v-chip
+                              class="ma-2"
+                              small
+                              color="orange accent-4"
+                              dark
+                            >
+                              {{ item.total }} Salidas
+                            </v-chip>
+                          </div>
+                        </div>
+                        <div class="flex">
+                          <div class="flex-1">
+                            <v-tooltip top>
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-progress-linear
+                                  v-model="item.percentages"
+                                  color="orange accent-4"
+                                  v-bind="attrs"
+                                  v-on="on"
+                                ></v-progress-linear>
+                              </template>
+                              <span>{{ item.percentages }}%</span>
+                            </v-tooltip>
+                          </div>
+                        </div>
+                      </template>
+                    </v-virtual-scroll>
+                  </v-card>
+                </v-tab-item>
+              </v-tabs-items>
+            </v-card>
+          </v-col>
+          <v-col cols="6">
+            <v-card
+              elevation="8"
+              class="p-2"
+            >
+              <!-- <v-card-text> -->
+                <canvas id="myChart" height="188"></canvas>
+              <!-- </v-card-text> -->
+            </v-card>
+          </v-col>
+          <!-- <v-card class="p-2">
+            <v-row>
+              <v-col cols="9">
+                <canvas id="myChart" height="130"></canvas>
+              </v-col>
+              <v-col cols="3">
+                <div>
+                  <v-select
+                    :items="companies"
+                    label="Empresa"
+                    item-text="name"
+                    item-value="id"
+                    dense
+                    outlined
+                  ></v-select>
+                </div>
+                <div>
+                  <v-select
+                    :items="partners"
+                    label="Socio"
+                    item-text="fullname"
+                    item-value="id"
+                    dense
+                    outlined
+                  ></v-select>
+                </div> -->
+                <!-- <div>
+                  <v-select
+                    :items="outlets"
+                    label="Tipo de material"
+                    item-text=""
+                    dense
+                    outlined
+                  ></v-select>
+                </div> -->
+              <!-- </v-col>
+            </v-row>
+          </v-card> -->
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-card class="p-2">
+            <v-row>
+              <!-- <v-col cols="9"> -->
+                <canvas id="outletChart" height="80"></canvas>
+              <!-- </v-col> -->
+              <!-- <v-col cols="3" class="pt-5">
+                
+              </v-col> -->
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-col>
+    <v-col cols="3">
+      <v-card class="p-3">
+          <v-row>
+              <v-col cols="12" class="mb-0 pb-0">
+                  <v-menu
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="dates"
+                        label="Seleccionar rango de fechas"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="dates"
+                      range
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menu = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="updateBgChart(filter)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              <v-col cols="12" class="pt-0 mt-0">
+                <v-card color="blue" dark>
+                  <div class="d-flex flex-no-wrap">
+                    <v-avatar
+                      size="110"
+                      tile
+                    > 
+                      <v-icon size="110" @click="updateBgChart('company')">mdi-city-variant</v-icon>
+                    </v-avatar>
+                    <div>
+                      <v-card-title class="text-sm">Empresas</v-card-title>
+                      <v-card-text>
+                        <div>{{ dashboardCards.Companies }}</div>
+                        <div>
+                          <v-btn rounded outlined x-small @click="goToCompanyForm">Agregar</v-btn>
+                          <!-- <v-btn rounded x-small @click="updateChartData('company')">Ver</v-btn> -->
+                        </div>
+                      </v-card-text>
+                    </div>
+                  </div>
+                </v-card>
+              </v-col>
+              <v-col cols="12">
+                <v-card color="red" dark>
+                  <div class="d-flex flex-no-wrap">
+                    <v-avatar
+                      size="110"
+                      tile
+                    >
+                      <v-icon size="110" @click="updateBgChart('partner')">mdi-account-multiple</v-icon>
+                    </v-avatar>
+                    <div>
+                      <v-card-title class="text-sm">Socios</v-card-title>
+                      <v-card-text>
+                        <div>{{ dashboardCards.Partners }}</div>
+                        <div>
+                          <v-btn rounded outlined x-small @click="goToPartnerForm">Agregar</v-btn>
+                          <!-- <v-btn rounded x-small @click="updateChartData('partner')">Ver</v-btn> -->
+                        </div>
+                      </v-card-text>
+                    </div>
+                  </div>
+                </v-card>
+              </v-col>
+              
+              <v-col cols="12">
+                <v-card color="yellow darken-1" dark>
+                  <div class="d-flex flex-no-wrap">
+                    <v-avatar
+                      size="110"
+                      tile
+                    >
+                      <v-icon size="110" @click="updateBgChart('outlet')">mdi-export</v-icon>
+                    </v-avatar>
+                    <div>
+                      <v-card-title class="text-xs">Salidas de mineral</v-card-title>
+                      <v-card-text>
+                        <div>{{ dashboardCards.Outlets }}</div>
+                        <div>
+                          <v-btn rounded outlined x-small @click="goToOutletForm">Agregar</v-btn>
+                        </div>
+                      </v-card-text>
+                    </div>
+                  </div>
+                </v-card>
+              </v-col>
+              <v-col cols="12">
+                <v-card color="green" dark>
+                  <div class="d-flex flex-no-wrap">
+                    <v-avatar
+                      size="110"
+                      tile
+                    >
+                      <v-icon size="110">mdi-car-multiple</v-icon>
+                    </v-avatar>
+                    <div>
+                      <v-card-title class="text-sm">Transportes</v-card-title>
+                      <v-card-text>
+                        <div>{{ dashboardCards.Vehicles }}</div>
+                        <div>
+                          <v-btn rounded outlined x-small @click="goToVehicleForm">Agregar</v-btn>
+                        </div>
+                      </v-card-text>
+                    </div>
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+      </v-card>
+    </v-col>
+  </v-row>
+  <!-- <v-card class="p-3 w-full">
+    <div class="text-3xl">Dashboard</div>
+    <div class="text-4xl text-blue-200">Cooperativa minera "Oruro SRL."</div>
+    <v-card-text>
+      <v-row>
+        <v-col cols="12" sm="3">
+          <v-card
+            color="blue"
+            dark
+            class="h-44"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <div>
+                <v-card-title class="text-sm w-28 h-16">Tornaguias</v-card-title>
+
+                <v-card-subtitle class="text-5xl">25</v-card-subtitle>
+
+                <v-card-actions>
+                  <v-btn
+                    class="ml-2 mt-3"
+                    outlined
+                    rounded
+                    small
+                  >
+                    VER
+                  </v-btn>
+                </v-card-actions>
+              </div>
+
+              <v-avatar
+                class="ma-3"
+                size="110"
+                tile
+              >
+                <v-icon size="110">mdi-view-dashboard</v-icon>
+              </v-avatar>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="3">
+          <v-card
+            color="red"
+            dark
+            class="h-44"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <div>
+                <v-card-title class="text-sm w-28 h-16">Tranportes</v-card-title>
+
+                <v-card-subtitle class="text-5xl">50</v-card-subtitle>
+
+                <v-card-actions>
+                  <v-btn
+                    class="ml-2 mt-3"
+                    outlined
+                    rounded
+                    small
+                  >
+                    VER
+                  </v-btn>
+                </v-card-actions>
+              </div>
+
+              <v-avatar
+                class="ma-3"
+                size="110"
+                tile
+              >
+                <v-icon size="110">mdi-view-dashboard</v-icon>
+              </v-avatar>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="3">
+          <v-card
+            color="green"
+            dark
+            class="h-44"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <div>
+                <v-card-title class="text-sm w-28 h-16">Socios</v-card-title>
+
+                <v-card-subtitle class="text-5xl">60</v-card-subtitle>
+
+                <v-card-actions>
+                  <v-btn
+                    class="ml-2 mt-3"
+                    outlined
+                    rounded
+                    small
+                  >
+                    VER
+                  </v-btn>
+                </v-card-actions>
+              </div>
+
+              <v-avatar
+                class="ma-3"
+                size="110"
+                tile
+              >
+                <v-icon size="110">mdi-view-dashboard</v-icon>
+              </v-avatar>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="3">
+            <v-card
+              color="yellow darken-1"
+              dark
+              class="h-44"
+            >
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                  <v-card-title class="text-sm w-28 h-16">Empresas</v-card-title>
+  
+                  <v-card-subtitle class="text-5xl">20</v-card-subtitle>
+  
+                  <v-card-actions>
+                    <v-btn
+                      class="ml-2 mt-3"
+                      outlined
+                      rounded
+                      small
+                    >
+                      VER
+                    </v-btn>
+                  </v-card-actions>
+                </div>
+  
+                <v-avatar
+                  class="ma-3"
+                  size="110"
+                  tile
+                >
+                  <v-icon size="110">mdi-view-dashboard</v-icon>
+                </v-avatar>
+              </div>
+            </v-card>
+          </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card> -->
+  <!-- <v-card> -->
+    <!-- <canvas id="myChart" width="400" height="100"></canvas> -->
+  <!-- </v-card> -->
+</div>

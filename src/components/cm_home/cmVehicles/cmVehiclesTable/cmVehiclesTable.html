@@ -1,0 +1,51 @@
+<div>
+  <div>
+      <v-card>
+          <v-card-title>
+            Vehiculos
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Buscar"
+              hide-details
+            ></v-text-field>
+            <v-spacer></v-spacer>
+            <download-excel
+              :data="vehicles"
+              :fields="json_fields_vehicles"
+              worksheet="My worksheet"
+              :name="excelReportName"
+            >
+              <v-btn color="cyan darken-3" dark>
+                Generar Excel
+              </v-btn>
+            </download-excel>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-2" dark @click="newItem">Agregar Vehiculo <v-icon>mdi-plus</v-icon></v-btn>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="vehicles"
+            :items-per-page="5"
+            :search="search"
+          >
+            <template v-slot:item.options="{ item }">
+              <v-icon
+                small
+                class="mr-2"
+                @click="editItem(item)"
+              >
+                mdi-pencil
+              </v-icon>
+              <v-icon
+                small
+                @click="deleteItem(item)"
+              >
+                mdi-delete
+              </v-icon>
+            </template>
+          </v-data-table>
+        </v-card>
+  </div>
+</div>

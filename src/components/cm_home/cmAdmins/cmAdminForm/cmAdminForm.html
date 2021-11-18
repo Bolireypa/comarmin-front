@@ -1,0 +1,70 @@
+<div>
+  <v-card>
+    <v-card-title>
+      <div>Agregar administrador</div>
+    </v-card-title>
+    <v-card-text>
+      <form @submit.prevent="submit">
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              v-model="userData.name"
+              label="Nombre"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="userData.lastname"
+              label="Apellido"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="userData.email"
+              label="Correo electronico"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="userData.password"
+              label="Contraseña"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="userData.birthDate"
+              label="Fecha de nacimiento"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="userData.cellphone"
+              type="number"
+              label="Celular"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="red darken-1" dark @click="adminTable">Volver<v-icon>mdi-undo</v-icon></v-btn>
+            <v-btn color="green darken-1" dark @click="submit">
+              Guardar
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
+    </v-card-text>
+  </v-card>
+</div>

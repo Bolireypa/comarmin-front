@@ -1,0 +1,72 @@
+<div>
+  <v-card>
+    <v-card-title>
+      Agregar nuevo socio
+    </v-card-title>
+    <v-card-text>
+      <form @submit.prevent="submit">
+          <v-row>
+              <v-col cols="6">
+                <v-text-field
+                  v-model="partnerData.name"
+                  label="Nombre"
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  v-model="partnerData.lastname"
+                  label="Apellido"
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  v-model="partnerData.ci"
+                  label="Cedula de identidad"
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  v-model="partnerData.address"
+                  label="Direccion"
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  v-model="partnerData.membershipDate"
+                  label="Fecha socio"
+                  dense
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  v-model="partnerData.cellphone"
+                  label="Celular"
+                  dense
+                  type="number"
+                  outlined
+                ></v-text-field>
+              </v-col>
+            </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="red darken-1" dark @click="partnersTable">
+              Volver
+            </v-btn>
+            <v-btn color="green darken-1" dark @click="submit">
+              Guardar
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
+    </v-card-text>
+  </v-card>
+</div>

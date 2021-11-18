@@ -1,0 +1,77 @@
+<div>
+  <div>
+      <v-card>
+          <v-card-title>
+            Salidas de mineral
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Buscar"
+              outlined
+              dense
+              hide-details
+            ></v-text-field>
+            <v-spacer></v-spacer>
+            <!-- <v-btn
+              @click="generatePDFStyle"
+            >
+              Descargar en PDF
+              <v-icon
+                small
+              >
+                mdi-file-document
+              </v-icon>
+            </v-btn> -->
+            <download-excel
+              :data="oreOutlets"
+              :fields="json_fields_outlets"
+              worksheet="My worksheet"
+              :name="excelReportName"
+              :before-generate="getOutletPartnerReport"
+            >
+              <v-btn color="cyan darken-3" dark>
+                Generar Excel
+              </v-btn>
+            </download-excel>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-2" dark @click="newItem">Agregar salida de mineral <v-icon>mdi-plus</v-icon></v-btn>
+          </v-card-title>
+          <div ref="testHtml">
+              <v-data-table
+              :headers="headers"
+              :items="oreOutlets"
+              :items-per-page="5"
+              :search="search"
+              ref="oreOutletTable"
+            >
+              <template v-slot:item.options="{ item }">
+                <v-icon
+                  small
+                  class="mr-2"
+                  @click="editItem(item)"
+                >
+                  mdi-pencil
+                </v-icon>
+                <v-icon
+                  small
+                  class="mr-2"
+                  @click="deleteItem(item)"
+                >
+                  mdi-delete
+                </v-icon>
+              </template>
+            </v-data-table>
+          </div>
+        </v-card>
+        <!-- <div class="w-4/5">
+            <h1>Titulo de pdf</h1>
+            <div class="text-red-500 ">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, incidunt minus. Aut quidem harum, molestiae labore, voluptas, nesciunt possimus nihil accusamus itaque nulla distinctio cupiditate laborum iusto. Voluptatem, rerum voluptates.
+            </div>
+            <h4>Subtitulo de pdf</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quasi non modi magni explicabo? At eligendi itaque, aliquam hic illum nostrum aliquid debitis? Deleniti suscipit aspernatur, sapiente a dolorum maiores! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime amet quos atque eum aliquam. Recusandae iure nemo aliquam illo ducimus, ratione eveniet atque dolorem, similique consequuntur obcaecati praesentium quod eius.</p>
+            <v-btn @click="generatePDFStyle">Generar PDF</v-btn>
+        </div> -->
+  </div>
+</div>

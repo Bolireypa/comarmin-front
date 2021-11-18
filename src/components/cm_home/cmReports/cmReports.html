@@ -1,0 +1,172 @@
+<div>
+  <v-card class="p-1">
+    <v-card-title>Reportes en Excel</v-card-title>
+    <v-card-subtitle>
+      Reporte por empresa
+    </v-card-subtitle>
+    <v-card-text>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="5"
+        >
+          <v-select
+            v-model="companyId"
+            label="Seleccionar Empresa"
+            :items="companies"
+            item-text="name"
+            item-value="id"
+            dense
+            outlined
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="5">
+          <v-menu
+            v-model="menu"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="dates"
+                label="Seleccionar la fecha de inicio y fin del reporte"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                outlined
+                dense
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="dates"
+              range
+              :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
+            >
+              <v-spacer></v-spacer>
+              <v-btn
+                text
+                color="primary"
+                @click="menu = false"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                text
+                color="primary"
+                @click="menu = false"
+              >
+                OK
+              </v-btn>
+            </v-date-picker>
+          </v-menu>
+          <!-- <v-date-picker
+            v-model="dates"
+            range
+          ></v-date-picker> -->
+        </v-col>
+        <v-col cols="12" sm="2">
+          <!-- <v-btn color="cyan darken-3" dark @click="getOreCompanyReport">
+            Generar
+          </v-btn> -->
+          <download-excel
+            :data="json_data_outlets"
+            :fields="json_fields_outlets"
+            worksheet="My worksheet"
+            :name="excelReportName"
+            :before-generate="getOreCompanyReport"
+          >
+            <v-btn color="cyan darken-3" dark>
+              Generar Excel
+            </v-btn>
+          </download-excel>
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <v-card-subtitle>
+      Reporte por socio
+    </v-card-subtitle>
+    <v-card-text>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="5"
+        >
+          <v-select
+            v-model="partnerId"
+            label="Seleccionar Socio"
+            :items="partners"
+            item-text="name"
+            item-value="id"
+            dense
+            outlined
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="5">
+          <v-menu
+            v-model="menu2"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="dates2"
+                label="Seleccionar la fecha de inicio y fin del reporte"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                outlined
+                dense
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="dates2"
+              range
+              :max="date"
+            >
+              <v-spacer></v-spacer>
+              <v-btn
+                text
+                color="primary"
+                @click="menu2 = false"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                text
+                color="primary"
+                @click="menu2 = false"
+              >
+                OK
+              </v-btn>
+            </v-date-picker>
+          </v-menu>
+          <!-- <v-date-picker
+            v-model="dates"
+            range
+          ></v-date-picker> -->
+        </v-col>
+        <v-col cols="12" sm="2">
+          <download-excel
+            :data="json_data_part_outl"
+            :fields="json_fields_part_outl"
+            worksheet="My worksheet"
+            :name="excelReportName"
+            :before-generate="getOutletPartnerReport"
+          >
+            <v-btn color="cyan darken-3" dark>
+              Generar Excel
+            </v-btn>
+          </download-excel>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
+</div>

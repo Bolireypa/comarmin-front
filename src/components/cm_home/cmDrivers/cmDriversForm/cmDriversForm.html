@@ -1,0 +1,64 @@
+<div>
+  <v-card>
+    <v-card-title>
+      Agregar conductor
+    </v-card-title>
+    <v-card-text>
+      <form @submit.prevent="submit">
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              v-model="driverData.name"
+              label="Nombre"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="driverData.lastname"
+              label="Apellido"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="driverData.ci"
+              label="Cedula de identidad"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="driverData.address"
+              label="Direccion"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="driverData.cellphone"
+              label="Celular"
+              dense
+              type="number"
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="red darken-1" dark @click="driverTable">
+              Volver
+            </v-btn>
+            <v-btn color="green darken-1" dark @click="submit">
+              Guardar
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
+    </v-card-text>
+  </v-card>
+</div>

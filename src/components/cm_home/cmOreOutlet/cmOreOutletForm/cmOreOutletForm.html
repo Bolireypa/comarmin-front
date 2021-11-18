@@ -1,0 +1,193 @@
+<div>
+  <v-card>
+    <v-card-title>
+      Generar nueva salida de mineral
+    </v-card-title>
+    <v-card-text>
+      <form @submit.prevent="submit">
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              v-model="outletData.date"
+              label="Fecha"
+              disabled
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="outletData.number"
+              label="Número Pre Asignado"
+              disabled
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <div class="text-xl">Propietario del mineral</div>
+        <v-divider></v-divider>
+        <v-row class="mt-1">
+          <v-col cols="6">
+            <v-select
+              v-model="outletData.companyId"
+              :items="companies"
+              item-text="name"
+              item-value="id"
+              label="Empresa destino"
+              dense
+              outlined
+            ></v-select>
+          </v-col>
+          <v-col cols="6">
+            <v-select
+              v-model="outletData.partnerId"
+              :items="partners"
+              item-text="name"
+              item-value="id"
+              label="Socio"
+              dense
+              outlined
+            ></v-select>
+          </v-col>
+        </v-row>
+        <div class="text-xl">Procedencia</div>
+        <v-divider></v-divider>
+        <v-row class="mt-1">
+          <!-- <v-col cols="12">
+            <v-select
+              label="Seccion"
+              dense
+              outlined
+            ></v-select>
+          </v-col> -->
+          <v-col cols="12">
+            <v-text-field
+              v-model="outletData.section"
+              label="Seccion"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <div class="text-xl">Medio de transporte</div>
+        <v-divider></v-divider>
+        <v-row class="mt-1">
+          <v-col cols="6">
+            <v-select
+              v-model="outletData.vehicleId"
+              :items="vehicles"
+              item-text="license_plate"
+              item-value="id"
+              label="Transporte"
+              dense
+              outlined
+            ></v-select>
+          </v-col>
+          <v-col cols="6">
+            <v-select
+              v-model="outletData.driverId"
+              :items="drivers"
+              item-text="name"
+              item-value="id"
+              label="Conductor"
+              dense
+              outlined
+            ></v-select>
+          </v-col>
+        </v-row>
+        <div class="text-xl">Tipo de material</div>
+        <v-divider></v-divider>
+        <v-row class="mt-1">
+          <v-col cols="6">
+            <p>Tipo de material</p>
+            <v-radio-group
+              v-model="outletData.materialType"
+              row
+            >
+              <v-radio
+                label="Broza"
+                value="Broza"
+              ></v-radio>
+              <v-radio
+                label="Embolsado"
+                value="Embolsado"
+              ></v-radio>
+            </v-radio-group>
+          </v-col>
+          <v-col cols="6">
+            <p>Minerales</p>
+            <v-row>
+              <v-col cols="2" class="pt-0">
+                <v-checkbox
+                  v-model="outletData.minerals"
+                  label="Sn"
+                  color="red darken-3"
+                  value="Sn"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="2" class="pt-0">
+                <v-checkbox
+                  v-model="outletData.minerals"
+                  label="Pb"
+                  color="red darken-3"
+                  value="Pb"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="2" class="pt-0">
+                <v-checkbox
+                  v-model="outletData.minerals"
+                  label="Ag"
+                  color="red darken-3"
+                  value="Ag"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="2" class="pt-0">
+                <v-checkbox
+                  v-model="outletData.minerals"
+                  label="Zn"
+                  color="red darken-3"
+                  value="Zn"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="2" class="pt-0">
+                <v-checkbox
+                  v-model="outletData.minerals"
+                  label="Otros"
+                  color="red darken-3"
+                  value="Otros"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="outletData.weight"
+              label="Peso en Tn."
+              dense
+              outlined
+              type="number"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="outletData.quantity"
+              label="Cantidad en sacos"
+              dense
+              outlined
+              type="number"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="green darken-1" dark @click="submit">
+              Guardar
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
+    </v-card-text>
+  </v-card>
+</div>
