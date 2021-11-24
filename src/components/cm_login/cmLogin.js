@@ -22,7 +22,7 @@ export default {
     ...mapActions('authModule', ['storeCredentials']),
     async login () {
       // const log_in = Axios.post('/login/', this.payload)
-      await _loginService.index(this.payload)
+      await _loginService.authPost(this.payload)
       .then((resp) => {
         console.log(resp)
         if (resp.success) {

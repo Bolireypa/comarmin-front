@@ -4,7 +4,7 @@ const nameSpace = 'login/'
 
 export const AuthService = {
   ...BASE_SERVICE,
-  index (payload) {
+  authPost (payload) {
     return this.post(`${nameSpace}`, payload)
   }
   // show (id) {
