@@ -22,7 +22,7 @@ export default {
         companyId: '',
         driverId: '',
         vehicleId: '',
-        userId: '64ebf7a7-21c2-4e65-95a0-b3cb72afc7e2'
+        userId: ''
       },
       companies: [],
       partners: [],
@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     async initialize () {
-      console.log(store)
+      // const authUser = store.state.authModule.data
+      console.log(store.state.authModule.data.user.id)
       try {
         // pr = partner response
         const pr = await _partnerService.index()
@@ -61,6 +62,7 @@ export default {
       this.outletData.quantity = parseInt(this.outletData.quantity)
       this.outletData.weight = parseInt(this.outletData.weight)
       this.outletData.minerals = 'Zn'
+      this.outletData.userId = store.state.authModule.data.user.id
       console.log(this.outletData)
       try {
         const oor = await _oreOutletService.create(this.outletData)
