@@ -2,8 +2,8 @@ import axios from 'axios'
 import store from '../../store'
 
 export const ApiInstance = axios.create({
-  // baseURL: 'https://comarminapp.herokuapp.com/api/v1/'
-  baseURL: 'http://localhost:5000/api/v1/'
+  baseURL: 'https://comarminapp.herokuapp.com/api/v1/'
+  // baseURL: 'http://localhost:5000/api/v1/'
 })
 
 ApiInstance.interceptors.request.use((config) => {
