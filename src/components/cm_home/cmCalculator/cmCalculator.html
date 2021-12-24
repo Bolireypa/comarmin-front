@@ -16,6 +16,7 @@
                       dense
                       @keyup="calculate"
                       type="number"
+                      color="green"
                     ></v-text-field>
                   </div>
                   <div class="flex-1 pt-5 text-center">Precio tabla</div>
@@ -28,6 +29,7 @@
                       outlined
                       type="number"
                       @keyup="calculate"
+                      color="green"
                       dense
                     ></v-text-field>
                   </div>
@@ -37,9 +39,9 @@
                       label="Zn ($us)"
                       type="number"
                       outlined
-                      @change="calculate2"
+                      @keyup="calculate2"
                       dense
-                      
+                      color="green"                      
                     ></v-text-field>
                   </div>
                 </div>
@@ -51,6 +53,7 @@
                       outlined
                       @keyup="calculate"
                       type="number"
+                      color="green"
                       dense
                     ></v-text-field>
                   </div>
@@ -59,10 +62,10 @@
                       v-model="pbSus"
                       label="Pb ($us)"
                       outlined
-                      @change="calculate2"
+                      @keyup="calculate2"
                       type="number"
                       dense
-                      
+                      color="green"                      
                     ></v-text-field>
                   </div>
                 </div>
@@ -75,6 +78,7 @@
                       outlined
                       dense
                       @keyup="calculate"
+                      color="green"
                     ></v-text-field>
                   </div>
                   <div class="flex-1">
@@ -83,9 +87,9 @@
                       label="Ag ($us)"
                       outlined
                       type="number"
-                      @change="calculate2"
+                      @keyup="calculate2"
                       dense
-                      
+                      color="green"                      
                     ></v-text-field>
                   </div>
                 </div>
@@ -96,9 +100,10 @@
                     label="Valor neto ($us)"
                     outlined
                     dense
-                      @keyup="calculate"
-                      type="number"
-                      readonly
+                    @keyup="calculate"
+                    type="number"
+                    readonly
+                    color="grey"
                   ></v-text-field>
                 </div>
                 <div class="flex space-x-4">
@@ -110,6 +115,7 @@
                       dense
                       @keyup="calculate"
                       type="number"
+                      color="grey"
                       readonly
                     ></v-text-field>
                   </div>
@@ -120,6 +126,7 @@
                       outlined
                       @keyup="calculate"
                       type="number"
+                      color="grey"
                       dense
                       readonly
                     ></v-text-field>
@@ -133,6 +140,7 @@
                       type="number"
                       @keyup="calculate"
                       outlined
+                      color="green"
                       dense
                     ></v-text-field>
                   </div>
@@ -143,6 +151,7 @@
                       type="number"
                       @keyup="calculate"
                       outlined
+                      color="green"
                       dense
                     ></v-text-field>
                   </div>
@@ -156,6 +165,7 @@
                       type="number"
                       @keyup="calculate"
                       dense
+                      color="grey"
                       readonly
                     ></v-text-field>
                   </div>
@@ -166,6 +176,7 @@
                       outlined
                       type="number"
                       @keyup="calculate"
+                      color="grey"
                       dense
                       readonly
                     ></v-text-field>

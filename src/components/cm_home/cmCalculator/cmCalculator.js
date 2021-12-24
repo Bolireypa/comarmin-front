@@ -75,16 +75,16 @@ export default {
       const valorNetoPb = this.tablaPb[Math.trunc(this.leyPb)]*tonelajeSeco*this.leyPb
       const valorNetoZn = this.tablaZn[Math.trunc(this.leyZn)]*tonelajeSeco*this.leyZn
       const valorNetoAg = this.tablaAg[Math.trunc(this.leyAg)]*tonelajeSeco*this.leyAg
-      this.netoSus = parseInt(valorNetoAg+valorNetoPb+valorNetoZn)
+      this.netoSus = Number(Math.round((valorNetoAg+valorNetoPb+valorNetoZn)+'e2')+'e-2')
       let totalRetenciones = 0
       for (let i = 0; i < this.retenciones.length; i++) {
         totalRetenciones = totalRetenciones + (this.retenciones[i]*this.netoSus)
       }
-      this.retencionesSus = parseInt(totalRetenciones)
-      this.regaliasSus = parseInt((valorNetoZn*this.rm.Zn)+(valorNetoPb*this.rm.Pb)+(valorNetoAg*this.rm.Ag))
+      this.retencionesSus = Number(Math.round(totalRetenciones+'e2')+'e-2')
+      this.regaliasSus = Number(Math.round(((valorNetoZn*this.rm.Zn)+(valorNetoPb*this.rm.Pb)+(valorNetoAg*this.rm.Ag))+'e2')+'e-2')
       const pgbSUS = this.netoSus-this.retencionesSus-this.regaliasSus-(this.anticipoBs/this.dolarPrecio)+(this.bonosBs/this.dolarPrecio)
-      this.pagableSus = parseInt(this.netoSus-this.retencionesSus-this.regaliasSus-(this.anticipoBs/this.dolarPrecio)+(this.bonosBs/this.dolarPrecio))
-      this.pagableBs = parseInt(pgbSUS*this.dolarPrecio)
+      this.pagableSus = Number(Math.round((this.netoSus-this.retencionesSus-this.regaliasSus-(this.anticipoBs/this.dolarPrecio)+(this.bonosBs/this.dolarPrecio))+'e2')+'e-2')
+      this.pagableBs = Number(Math.round((pgbSUS*this.dolarPrecio)+'e2')+'e-2')
     },
     calculate2 () {
       const tonelajeSeco = this.tonelaje-this.tonelaje*this.humedad
@@ -96,16 +96,16 @@ export default {
       const valorNetoPb = this.pbSus*tonelajeSeco*this.leyPb
       const valorNetoZn = this.znSus*tonelajeSeco*this.leyZn
       const valorNetoAg = this.agSus*tonelajeSeco*this.leyAg
-      this.netoSus = parseInt(valorNetoAg+valorNetoPb+valorNetoZn)
+      this.netoSus = Number(Math.round((valorNetoAg+valorNetoPb+valorNetoZn)+'e2')+'e-2')
       let totalRetenciones = 0
       for (let i = 0; i < this.retenciones.length; i++) {
         totalRetenciones = totalRetenciones + (this.retenciones[i]*this.netoSus)
       }
-      this.retencionesSus = parseInt(totalRetenciones)
-      this.regaliasSus = parseInt((valorNetoZn*this.rm.Zn)+(valorNetoPb*this.rm.Pb)+(valorNetoAg*this.rm.Ag))
+      this.retencionesSus = Number(Math.round(totalRetenciones+'e2')+'e-2')
+      this.regaliasSus = Number(Math.round(((valorNetoZn*this.rm.Zn)+(valorNetoPb*this.rm.Pb)+(valorNetoAg*this.rm.Ag))+'e2')+'e-2')
       const pgbSUS = this.netoSus-this.retencionesSus-this.regaliasSus-(this.anticipoBs/this.dolarPrecio)+(this.bonosBs/this.dolarPrecio)
-      this.pagableSus = parseInt(this.netoSus-this.retencionesSus-this.regaliasSus-(this.anticipoBs/this.dolarPrecio)+(this.bonosBs/this.dolarPrecio))
-      this.pagableBs = parseInt(pgbSUS*this.dolarPrecio)
+      this.pagableSus = Number(Math.round((this.netoSus-this.retencionesSus-this.regaliasSus-(this.anticipoBs/this.dolarPrecio)+(this.bonosBs/this.dolarPrecio))+'e2')+'e-2')
+      this.pagableBs = Number(Math.round((pgbSUS*this.dolarPrecio)+'e2')+'e-2')
     },
     async update(i) {
       this.dialog = true

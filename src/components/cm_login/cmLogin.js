@@ -10,7 +10,11 @@ export default {
       payload: {
         email: '',
         password: ''
-      }
+      },
+      loading: false,
+      show1: false,
+      alert: false,
+      alertMsg: ''
     }
   },
   computed: {
@@ -21,6 +25,7 @@ export default {
   methods: {
     ...mapActions('authModule', ['storeCredentials']),
     async login () {
+      this.loading = true
       // const log_in = Axios.post('/login/', this.payload)
       await _loginService.authPost(this.payload)
       .then((resp) => {
@@ -37,6 +42,9 @@ export default {
         //   text: err.msg
         // })
         console.log('Ocurrio un error', err)
+        this.alertMsg = 'Usuario o contraseña incorrectos, intente nuevamente'
+        setTimeout(() => this.alert = false, 4000)
+        this.alert = true
         this.loading = false
       })
       // console.log(log_in)

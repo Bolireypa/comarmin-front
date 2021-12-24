@@ -7,17 +7,36 @@
       <form @submit.prevent="submit">
         <v-row>
           <v-col cols="6">
-            <v-text-field
-              v-model="outletData.date"
-              label="Fecha"
-              disabled
-            ></v-text-field>
+            <v-menu
+              v-model="menu2"
+              :close-on-content-click="false"
+              :nudge-right="40"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="outletData.date"
+                  label="Fecha"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="outletData.date"
+                @input="menu2 = false"
+                :max="outletData.date"
+              ></v-date-picker>
+            </v-menu>
           </v-col>
           <v-col cols="6">
             <v-text-field
               v-model="outletData.number"
               label="Número Pre Asignado"
-              disabled
+              
             ></v-text-field>
           </v-col>
         </v-row>
@@ -190,4 +209,22 @@
       </form>
     </v-card-text>
   </v-card>
+  <v-alert
+    class="absolute bottom-0 right-0"
+    :value="alert"
+    type="error"
+    border="top"
+    transition="scale-transition"
+  >
+    {{ alertMsg }}
+  </v-alert>
+  <v-alert
+    class="absolute bottom-0 right-0"
+    :value="alert2"
+    type="success"
+    border="top"
+    transition="scale-transition"
+  >
+    {{ alertMsg }}
+  </v-alert>
 </div>

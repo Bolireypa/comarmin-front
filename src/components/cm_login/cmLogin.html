@@ -1,39 +1,55 @@
 <div>
-  <v-container>
-    <v-card
-      class="mx-auto mt-3"
-      max-width="400"
-      outlined
-      elevation="4"
-    >
-      <v-card-text>
-        <div class="text-h4">Ingresar</div>
-        <form>
-          
-          <v-text-field
-            v-model="payload.email"
-            label="E-mail"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="payload.password"
-            label="Contraseña"
-            required
-          ></v-text-field>
-          <v-btn
-            color="primary"
-            outlined
-            rounded
-            @click="login"
-          >
-            Ingresar
-          </v-btn>
-        </form>
-      </v-card-text>
+  <div>
+    <v-container>
+      <v-card
+        class="mx-auto mt-3"
+        max-width="400"
+        outlined
+        elevation="4"
+      >
+        <v-card-text>
+          <div class="text-h4">Ingresar</div>
+          <form>
+            
+            <v-text-field
+              v-model="payload.email"
+              label="E-mail"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="payload.password"
+              label="Contraseña"
+              required
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show1 = !show1"
+              :type="show1 ? 'text' : 'password'"
+            ></v-text-field>
+            <v-btn
+              color="primary"
+              outlined
+              rounded
+              @click="login"
+              :loading="loading"
+            >
+              Ingresar
+            </v-btn>
+          </form>
+        </v-card-text>
 
-      <v-card-actions>
-        
-      </v-card-actions>
-    </v-card>
-  </v-container>
+        <v-card-actions>
+          
+        </v-card-actions>
+      </v-card>
+      
+    </v-container>
+    <v-alert
+      class="absolute bottom-0 right-0"
+      :value="alert"
+      type="error"
+      border="top"
+      transition="scale-transition"
+    >
+      {{ alertMsg }}
+    </v-alert>
+  </div>
 </div>

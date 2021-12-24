@@ -12,7 +12,7 @@ export default {
     return {
       outletData: {
         date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-        number: Math.floor(Math.random() * 101),
+        number: null,
         section: '',
         quantity: null,
         weight: null,
@@ -27,7 +27,12 @@ export default {
       companies: [],
       partners: [],
       drivers: [],
-      vehicles: []
+      vehicles: [],
+      menu2: false,
+      type: '',
+      alert: false,
+      alert2: false,
+      alertMsg: ''
       // users: [],
     }
   },
@@ -61,6 +66,7 @@ export default {
     async submit () {
       this.outletData.quantity = parseInt(this.outletData.quantity)
       this.outletData.weight = parseInt(this.outletData.weight)
+      this.outletData.number = parseInt(this.outletData.number)
       this.outletData.minerals = 'Zn'
       this.outletData.userId = store.state.authModule.data.user.id
       console.log(this.outletData)
@@ -68,8 +74,15 @@ export default {
         const oor = await _oreOutletService.create(this.outletData)
         this.$router.push({ name: 'OreOutlet' })
         console.log(oor)
+        this.alertMsg = 'Se guardo correctamente'
+        setTimeout(() => this.alert2 = false, 4000)
+        this.alert2 = true
       } catch (error) {
         console.log(error)
+        this.alertMsg = 'Ocurrio un error al guardar la Salido de mineral'
+        this.type = 'error'
+        setTimeout(() => this.alert = false, 4000)
+        this.alert = true
       }
     }
   }
